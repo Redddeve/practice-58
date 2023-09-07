@@ -4,7 +4,9 @@ function App() {
   console.log(article);
   return (
     <>
-      <BlogCard message="hello" {...article} />
+      {article.map((item) => (
+        <BlogCard message="hello" {...item} />
+      ))}
     </>
   );
 }
