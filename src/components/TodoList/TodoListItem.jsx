@@ -1,8 +1,8 @@
-export const TodoListItem = ({ id, title }) => {
+export const TodoListItem = ({ id, title, deleteTodo }) => {
 	return (
 		<li>
 			<h3>{title}</h3>
-			<button>delete</button>
+			<button onClick={() => deleteTodo(id)}>delete</button>
 		</li>
 	)
 }
