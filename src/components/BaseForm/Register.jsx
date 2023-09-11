@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { register } from '../../Helpers/registerForm'
-
 export default class Register extends Component {
 	state = {
 		name: '',
