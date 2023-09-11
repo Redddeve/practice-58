@@ -1,14 +1,14 @@
-import React from "react";
-import Register from "./components/BaseForm/Register";
-import { RegisterUnControlled } from "./components/RegisterUnControlled/RegisterUnControlled";
+import React from 'react'
+import Register from './components/BaseForm/Register'
+import { RegisterUnControlled } from './components/RegisterUnControlled/RegisterUnControlled'
+import TodoWrapper from './components/TodoList/TodoWrapper'
 
 const App = () => {
-  return (
-    <>
-      <Register />
-      <RegisterUnControlled />
-    </>
-  );
-};
+	return (
+		<>
+			<TodoWrapper />
+		</>
+	)
+}
 
-export default App;
+export default App

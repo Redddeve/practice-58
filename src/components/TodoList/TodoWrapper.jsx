@@ -39,7 +39,7 @@ class TodoWrapper extends React.Component {
 	}
 
 	render() {
-		const { todos, currentTodo, filter } = this.state
+		const { currentTodo, filter } = this.state
 		const filteredData = this.filterArrTodos()
 		return (
 			<>
