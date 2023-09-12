@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const AddTodo = props => {
-	const { inputDataChanger, inputData, addTodo } = props
-	return (
-		<>
-			<input onChange={inputDataChanger} value={inputData} type='text' />
-			<button onClick={addTodo}>Add todo</button>
-		</>
-	)
+class AddTodo extends Component {
+	state = {
+		currentTodo: '',
+	}
+
+	handleSubmit = e => {
+		e.preventDefault()
+		this.props.addTodo(this.state.currentTodo)
+		this.setState({ currentTodo: '' })
+	}
+
+	handleChangeInput = e => {
+		this.setState({ currentTodo: e.target.value })
+	}
+
+	render() {
+		const { currentTodo } = this.state
+		console.log(this.props)
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<input onChange={this.handleChangeInput} value={currentTodo} type='text' />
+				<button>Add todo</button>
+			</form>
+		)
+	}
 }
 
 export default AddTodo
