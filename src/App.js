@@ -1,7 +1,11 @@
 import React from 'react'
-
+import { Product } from './components/Product'
 const App = () => {
-	return <></>
+	return (
+		<>
+			<Product />
+		</>
+	)
 }
 
 export default App
