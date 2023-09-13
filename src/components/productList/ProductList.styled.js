@@ -6,4 +6,6 @@ export const StyledList = styled.ul`
 	flex-wrap: wrap;
 	gap: 30px;
 	width: 100%;
+
+	list-style: none;
 `

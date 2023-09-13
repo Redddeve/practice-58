@@ -1,8 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const Global = createGlobalStyle`
 body {
-    background-color: lightblue;
+    background-color: rgba(153, 230, 255, 0.5);
 
 }
 
@@ -14,6 +14,7 @@ h5,
 h6,
 p {
   margin: 0;
+  padding: 0;
 }
 ul,
 ol {
@@ -26,4 +27,4 @@ img {
   height: auto;
 }
 
-`;
+`

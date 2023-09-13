@@ -11,4 +11,3 @@ export const ProductList = ({ data = [] }) => {
 		</StyledList>
 	)
 }
-//  StyledList

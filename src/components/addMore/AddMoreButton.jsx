@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyledBtnLoad, StyledButtonDiv } from './AddMore.styled'
 
-export const AddMoreButton = ({ title }) => {
+export const AddMoreButton = ({ title, onLoadMore }) => {
 	return (
 		<StyledButtonDiv>
-			<StyledBtnLoad>{title}</StyledBtnLoad>
+			<StyledBtnLoad onClick={onLoadMore}>{title}</StyledBtnLoad>
 		</StyledButtonDiv>
 	)
 }
