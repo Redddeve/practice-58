@@ -1,13 +1,11 @@
 import React from 'react'
-import { StyledinputWrapper, StyledInput, StyledSearchBtn } from './Search.Styled'
+import { StyledInput, StyledSearchBtn, Form } from './Search.Styled'
 
 export const Search = () => {
 	return (
-		<form>
-			<StyledinputWrapper>
-				<StyledInput placeholder='Enter product name' />
-				<StyledSearchBtn>Search</StyledSearchBtn>
-			</StyledinputWrapper>
-		</form>
+		<Form>
+			<StyledInput placeholder='Enter product name' />
+			<StyledSearchBtn>Search</StyledSearchBtn>
+		</Form>
 	)
 }

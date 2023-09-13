@@ -1,9 +1,10 @@
 import { styled } from 'styled-components'
 
-export const StyledinputWrapper = styled.div`
+export const Form = styled.form`
 	display: flex;
 	padding-bottom: 30px;
 `
+export const StyledinputWrapper = styled.div``
 export const StyledInput = styled.input`
 	width: 300px;
 	height: 30px;
@@ -27,5 +28,6 @@ export const StyledSearchBtn = styled.button`
 	border: 1px solid grey;
 	&:hover {
 		background: red;
+		cursor: pointer;
 	}
 `

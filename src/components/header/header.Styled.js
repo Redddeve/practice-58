@@ -22,6 +22,7 @@ export const StyledCart = styled.button`
 	transition: background 0.2s;
 	&:hover {
 		background: red;
+		cursor: pointer;
 	}
 `
 

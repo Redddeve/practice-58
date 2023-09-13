@@ -15,10 +15,10 @@ export const StyledImg = styled.img`
 	width: 100%;
 	height: 200px;
 	display: block;
-
-	border-radius: 10px;
-
 	margin-bottom: 15px;
+
+	object-fit: cover;
+	border-radius: 10px;
 `
 
 export const StyledDiv = styled.div`
