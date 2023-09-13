@@ -19,19 +19,20 @@ export class Product extends Component {
 	}
 	async componentDidMount() {
 		const { skip, limit } = this.state
-		const { products } = await getProducts({ skip, limit })
-		this.setState({ products })
+		await this.fetchData(skip, limit)
 	}
 	async componentDidUpdate(prevProps, prevState) {
 		const { skip, limit } = this.state
 		if (prevState.skip !== skip) {
-			const { products } = await getProducts({ skip, limit })
-			this.setState(prev => ({
-				products: [...prev.products, ...products],
-			}))
+			await this.fetchData(skip, limit)
 		}
 	}
-
+	fetchData = async (skip, limit) => {
+		const { products } = await getProducts({ skip, limit })
+		this.setState(prev => ({
+			products: [...prev.products, ...products],
+		}))
+	}
 	onLoadMore = () => {
 		this.setState(prev => ({
 			skip: prev.skip + this.state.limit,
