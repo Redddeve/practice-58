@@ -20,3 +20,15 @@ export const StyledForm = styled.form`
 
 	width: 300px;
 `
+
+export const StyledFormInput = styled.input`
+	border-radius: 10px;
+	border-color: teal;
+`
+export const StyledFormButton = styled.button`
+	border-radius: 10px;
+
+	&hover {
+		background-color: tomato;
+	}
+`

@@ -12,7 +12,6 @@ axios.defaults.params = {
 export const getImages = async userConfigParams => {
 	const { data } = await axios.get('search', {
 		params: {
-			query: 'birds',
 			...userConfigParams,
 		},
 	})

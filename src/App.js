@@ -3,6 +3,7 @@ import { HeaderSearch } from './components/HeaderSearch/HeaderSearch'
 import { Main } from './components/Main/Main'
 import { ButtonLoadMore } from './components/ButtonLoadMore/ButtonLoadMore'
 import { getImages } from './services/fetch'
+import { Modal } from './components/Modal/Modal'
 // План
 // Створити пошук картинок через пексельс
 // Заготовка для запиту, URL, Headers, params:
@@ -17,32 +18,53 @@ class App extends Component {
 	state = {
 		page: 1,
 		pictures: [],
+		query: 'birds',
+		isOpen: false,
+		currentImg: null,
+		currentAlt: null,
 	}
 
-	fetchPictures = async () => {
+	getSearch = query => {
+		this.setState({ query, pictures: [], page: 1 })
+	}
+
+	componentDidUpdate(_, prevState) {
+		const { query, page } = this.state
+		if (prevState.page !== page || prevState.query !== query) {
+			this.fetchPictures({ page, query })
+		}
+	}
+
+	fetchPictures = async params => {
 		try {
-			const { photos } = await getImages({})
-			console.log(photos)
+			const { photos } = await getImages(params)
 			this.setState(prev => ({ pictures: [...prev.pictures, ...photos] }))
 		} catch (error) {}
 	}
 
 	async componentDidMount() {
-		await this.fetchPictures()
+		const { query, page } = this.state
+
+		await this.fetchPictures({ page, query })
 	}
 
 	handleLoadMore = () => {
 		this.setState(prev => ({ page: prev.page + 1 }))
 	}
 
+	onImgClick = (src, alt) => {
+		this.setState(prev => ({ isOpen: !prev.isOpen, currentImg: src, currentAlt: alt }))
+	}
+
 	render() {
-		const { pictures } = this.state
+		const { pictures, isOpen, currentAlt, currentImg } = this.state
 		return (
 			<>
-				<HeaderSearch />
-				<Main pictures={pictures}></Main>
+				<HeaderSearch getSearch={this.getSearch} />
+				<Main pictures={pictures} onImgClick={this.onImgClick}></Main>
 
 				<ButtonLoadMore handleLoadMore={this.handleLoadMore} />
+				{isOpen && <Modal currentAlt={currentAlt} currentImg={currentImg} onImgClick={this.onImgClick} />}
 			</>
 		)
 	}

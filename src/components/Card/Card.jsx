@@ -1,9 +1,9 @@
 import React from 'react'
 import { ImgItem } from './Card.Styled'
 
-export const Card = ({ src, alt }) => {
+export const Card = ({ src, alt, onImgClick }) => {
 	return (
-		<ImgItem>
+		<ImgItem onClick={() => onImgClick(src, alt)}>
 			<img src={src} alt={alt} />
 		</ImgItem>
 	)
