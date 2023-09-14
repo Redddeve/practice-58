@@ -5,14 +5,6 @@ import { ButtonLoadMore } from './components/ButtonLoadMore/ButtonLoadMore'
 import { getImages } from './services/fetch'
 import { Modal } from './components/Modal/Modal'
 // План
-// Створити пошук картинок через пексельс
-// Заготовка для запиту, URL, Headers, params:
-// axios.defaults.baseURL = 'https://api.pexels.com/v1/';
-// axios.defaults.headers.common['Authorization'] = API_KEY;
-// axios.defaults.params = {
-//   orientation: 'landscape',
-//   per_page: 15,
-// };
 
 class App extends Component {
 	state = {
@@ -23,12 +15,23 @@ class App extends Component {
 		currentImg: null,
 		currentAlt: null,
 	}
-
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		return document.documentElement.scrollHeight - 100
+	}
 	getSearch = query => {
 		this.setState({ query, pictures: [], page: 1 })
 	}
 
-	componentDidUpdate(_, prevState) {
+	componentDidUpdate(_, prevState, snapshot) {
+		if (snapshot !== null) {
+			setTimeout(() => {
+				window.scroll({
+					top: snapshot,
+					behavior: 'smooth',
+				})
+			}, 500)
+		}
+
 		const { query, page } = this.state
 		if (prevState.page !== page || prevState.query !== query) {
 			this.fetchPictures({ page, query })
