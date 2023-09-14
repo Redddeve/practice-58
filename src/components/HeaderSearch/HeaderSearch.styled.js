@@ -10,3 +10,13 @@ export const StyledBox = styled.div`
 
 	background-color: lightblue;
 `
+
+export const StyledForm = styled.form`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	gap: 15px;
+
+	width: 300px;
+`

@@ -1,13 +1,13 @@
 import React from 'react'
-import { StyledBox } from './HeaderSearchю.styled'
+import { StyledBox, StyledForm } from './HeaderSearch.styled'
 
 export const HeaderSearch = () => {
 	return (
 		<StyledBox>
-			<form>
+			<StyledForm>
 				<input />
 				<button>find</button>
-			</form>
+			</StyledForm>
 		</StyledBox>
 	)
 }

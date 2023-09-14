@@ -7,6 +7,7 @@ export const StyledButton = styled.button`
 	height: 40px;
 
 	border: 1px solid rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
 	background-color: blue;
 	color: white;
 
