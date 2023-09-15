@@ -14,6 +14,7 @@ const App = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [currentImg, setCurrentImg] = useState(null)
 	const [currentAlt, setCurrentAlt] = useState(null)
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		fetchPictures({ page, query })
@@ -25,12 +26,20 @@ const App = () => {
 		setPage(1)
 	}
 
+	const clear = e => {
+		setPictures([])
+		fetchPictures({ page: 1, query: 'birds' })
+	}
+
 	const fetchPictures = async params => {
+		setIsLoading(true)
 		try {
 			const { photos } = await getImages(params)
 			setPictures(prev => [...prev, ...photos])
 		} catch (error) {
 			console.error(error)
+		} finally {
+			setIsLoading(false)
 		}
 		// try {
 		// 	const { photos } = await getImages(params)
@@ -52,10 +61,11 @@ const App = () => {
 
 	return (
 		<>
-			<HeaderSearch getSearch={getSearch} />
-			<Main pictures={pictures} onImgClick={onImgClick}></Main>
+			<HeaderSearch getSearch={getSearch} clear={clear} />
+			{pictures.length ? <Main pictures={pictures} onImgClick={onImgClick} /> : <h2>There is nothing to show</h2>}
+			{isLoading && <h2> Loading...</h2>}
+			{!isLoading && pictures.length ? <ButtonLoadMore handleLoadMore={handleLoadMore} /> : null}
 
-			<ButtonLoadMore handleLoadMore={handleLoadMore} />
 			{isOpen && <Modal currentAlt={currentAlt} currentImg={currentImg} onImgClick={onImgClick} />}
 		</>
 	)
