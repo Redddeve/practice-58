@@ -3,11 +3,17 @@ import styled from 'styled-components'
 
 export const Modal = ({ currentAlt, currentImg, onImgClick }) => {
 	useEffect(() => {
-		document.body.style.overflow = 'hidden'
-		return () => {
-			document.body.style.overflow = 'auto'
+		const onCloseModal = e => {
+			if (e.key === 'Escape') {
+				onImgClick()
+			}
 		}
-	}, [])
+		document.addEventListener('keydown', onCloseModal)
+		return () => {
+			document.removeEventListener('keydown', onCloseModal)
+		}
+	}, [onImgClick])
+
 	return (
 		<StyledModalBackdrop onClick={onImgClick}>
 			<ModalContent>

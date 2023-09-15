@@ -15,7 +15,9 @@ const App = () => {
 	const [currentImg, setCurrentImg] = useState(null)
 	const [currentAlt, setCurrentAlt] = useState(null)
 
-	useEffect(() => {}, [])
+	useEffect(() => {
+		fetchPictures({ page, query })
+	}, [page, query])
 
 	const getSearch = query => {
 		setQuery(query)
