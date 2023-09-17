@@ -19,7 +19,6 @@ export const HeaderSearch = ({ getSearch, clear }) => {
 			alert('enter properly name')
 			return
 		}
-		// const { query } = e.currentTarget.elements
 		getSearch(query.value)
 	}
 	const formREf = useRef()
