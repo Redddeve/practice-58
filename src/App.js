@@ -26,47 +26,33 @@ const App = () => {
 
 	const getSearch = query => {
 		dispatch(setQuery(query))
-
-		// setQuery(query)
-		// setPictures([])
-		// setPage(1)
 	}
 
 	const clear = e => {
 		dispatch(setPicturesReset())
-		// setPictures([])
 		fetchPictures({ page: 1, query: 'birds' })
 	}
 
 	const fetchPictures = async params => {
 		dispatch(setLoading(true))
-		// setIsLoading(true)
 		try {
 			const { photos } = await getImages(params)
 			dispatch(setPictures(photos))
-			// setPictures(prev => [...prev, ...photos])
 		} catch (error) {
 			console.error(error)
 		} finally {
 			dispatch(setLoading(false))
-
-			// setIsLoading(false)
 		}
 	}
 
 	const handleLoadMore = () => {
 		dispatch(setPage())
-		// setPage(prev => prev + 1)
 	}
 
 	const onImgClick = (src, alt) => {
 		dispatch(setIsOpen())
 		dispatch(setCurrentImg(src))
 		dispatch(setCurrentAlt(alt))
-
-		// setIsOpen(!isOpen)
-		// setCurrentImg(src)
-		// setCurrentAlt(alt)
 	}
 
 	return (
