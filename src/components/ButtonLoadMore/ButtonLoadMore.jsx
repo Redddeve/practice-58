@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyledButton } from './ButtonLoadMore.styled'
+import { context } from '../../context/ContextProvider'
+import { setPage } from '../../reducer/action'
 
 export const ButtonLoadMore = ({ handleLoadMore }) => {
-	return <StyledButton onClick={handleLoadMore}>Load More</StyledButton>
+	const { dispatch } = useContext(context)
+	return <StyledButton onClick={() => dispatch(setPage())}>Load More</StyledButton>
 }

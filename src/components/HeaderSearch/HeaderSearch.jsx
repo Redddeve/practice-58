@@ -1,7 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import { StyledBox, StyledForm, StyledFormInput, StyledFormButton } from './HeaderSearch.styled'
+import { context } from '../../context/ContextProvider'
+import { setQuery } from '../../reducer/action'
 
 export const HeaderSearch = ({ getSearch, clear }) => {
+	const { dispatch } = useContext(context)
 	useEffect(() => {
 		formREf.current.focus()
 	}, [])
@@ -19,7 +22,7 @@ export const HeaderSearch = ({ getSearch, clear }) => {
 			alert('enter properly name')
 			return
 		}
-		getSearch(query.value)
+		dispatch(setQuery(query.value))
 	}
 	const formREf = useRef()
 	console.log(formREf)
