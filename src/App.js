@@ -1,54 +1,72 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component, useState, useEffect, useReducer } from 'react'
 import { HeaderSearch } from './components/HeaderSearch/HeaderSearch'
 import { Main } from './components/Main/Main'
 import { ButtonLoadMore } from './components/ButtonLoadMore/ButtonLoadMore'
 import { getImages } from './services/fetch'
 import { Modal } from './components/Modal/Modal'
+import { initialState, picturesReducer } from './reducer/reducer'
+import {
+	setCurrentAlt,
+	setCurrentImg,
+	setIsOpen,
+	setLoading,
+	setPage,
+	setPictures,
+	setPicturesReset,
+	setQuery,
+} from './reducer/action'
 
 const App = () => {
-	const [page, setPage] = useState(1)
-	const [pictures, setPictures] = useState([])
-	const [query, setQuery] = useState('birds')
-	const [isOpen, setIsOpen] = useState(false)
-	const [currentImg, setCurrentImg] = useState(null)
-	const [currentAlt, setCurrentAlt] = useState(null)
-	const [isLoading, setIsLoading] = useState(false)
+	const [state, dispatch] = useReducer(picturesReducer, initialState)
 
+	const { page, pictures, query, isOpen, currentImg, currentAlt, isLoading } = state
 	useEffect(() => {
 		fetchPictures({ page, query })
 	}, [page, query])
 
 	const getSearch = query => {
-		setQuery(query)
-		setPictures([])
-		setPage(1)
+		dispatch(setQuery(query))
+
+		// setQuery(query)
+		// setPictures([])
+		// setPage(1)
 	}
 
 	const clear = e => {
-		setPictures([])
+		dispatch(setPicturesReset())
+		// setPictures([])
 		fetchPictures({ page: 1, query: 'birds' })
 	}
 
 	const fetchPictures = async params => {
-		setIsLoading(true)
+		dispatch(setLoading(true))
+		// setIsLoading(true)
 		try {
 			const { photos } = await getImages(params)
-			setPictures(prev => [...prev, ...photos])
+			dispatch(setPictures(photos))
+			// setPictures(prev => [...prev, ...photos])
 		} catch (error) {
 			console.error(error)
 		} finally {
-			setIsLoading(false)
+			dispatch(setLoading(false))
+
+			// setIsLoading(false)
 		}
 	}
 
 	const handleLoadMore = () => {
-		setPage(prev => prev + 1)
+		dispatch(setPage())
+		// setPage(prev => prev + 1)
 	}
 
 	const onImgClick = (src, alt) => {
-		setIsOpen(!isOpen)
-		setCurrentImg(src)
-		setCurrentAlt(alt)
+		dispatch(setIsOpen())
+		dispatch(setCurrentImg(src))
+		dispatch(setCurrentAlt(alt))
+
+		// setIsOpen(!isOpen)
+		// setCurrentImg(src)
+		// setCurrentAlt(alt)
 	}
 
 	return (
