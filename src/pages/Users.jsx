@@ -1,18 +1,45 @@
 import React, { useEffect, useState } from 'react'
-import { fetchAllUsers } from '../services/api'
-import { Link, Outlet } from 'react-router-dom'
+import { fetchAllUsers, fetchUserByQuery } from '../services/api'
+import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom'
 import { useHttp } from '../hooks/useHttp'
 import styled from 'styled-components'
+import { useForm } from 'react-hook-form'
 
 const Users = () => {
-	const { data: users, setData } = useHttp(fetchAllUsers)
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const { register, handleSubmit } = useForm()
+
+	const submitForm = data => {
+		console.log(data)
+		setSearchParams(
+			data.query
+				? {
+						query: data.query,
+				  }
+				: {}
+		)
+	}
+
+	const query = searchParams.get('query') || ''
+	const location = useLocation()
+	// console.log(location)
+
+	useEffect(() => {
+		document.title = location.pathname.slice(1)
+	}, [location.pathname])
+	const { data: users, setData } = useHttp(fetchUserByQuery, query)
 
 	return (
 		<StyledWrapper>
 			<StyledList>
+				<form onSubmit={handleSubmit(submitForm)}>
+					<input {...register('query')} />
+					<button>Search</button>
+				</form>
 				{users.map(user => (
 					<li key={user.id}>
-						<Link to={user.id.toString()}>
+						<Link state={{ from: location }} to={user.id.toString()}>
 							{user.firstName} {user.lastName}
 						</Link>
 					</li>

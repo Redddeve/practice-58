@@ -1,16 +1,24 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useHttp } from '../hooks/useHttp'
 import { fetchUserById } from '../services/api'
-import { Link, Outlet, useParams } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 const SingleUser = () => {
 	const { id } = useParams()
+	const location = useLocation()
+	console.log(location)
+	const navigate = useNavigate()
 
+	const ref = useRef(location.state?.from || '/')
+	const handleGoBack = () => {
+		navigate(ref.current)
+	}
 	const { data: user } = useHttp(fetchUserById, id)
 	const { firstName, lastName, age, email, gender, phone, password, image } = user
 	return (
 		<StyledWrapper style={{ padding: '0 20px' }}>
+			<button onClick={handleGoBack}>Go back</button>
 			<div>
 				<img width={100} height={100} src={image} alt={firstName} />
 				<h1>
