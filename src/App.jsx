@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import Users from './pages/Users'
+// import Users from './pages/Users'
 import PageNotFound from './pages/PageNotFound'
 import Layout from './components/Layout'
-import SingleUser from './pages/SingleUser'
-import UserTodos from './pages/UserTodos'
+// import SingleUser from './pages/SingleUser'
+// import UserTodos from './pages/UserTodos'
 // 1. Створити роути, лейаут, додати заглушку - Віталій
+
+const Users = lazy(() => import('./pages/Users'))
+const SingleUser = lazy(() => import('./pages/SingleUser'))
+const UserTodos = lazy(() => import('./pages/UserTodos'))
 
 export const App = () => {
 	return (

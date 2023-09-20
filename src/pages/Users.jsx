@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { fetchAllUsers, fetchUserByQuery } from '../services/api'
 import { Link, Outlet, useLocation, useSearchParams } from 'react-router-dom'
 import { useHttp } from '../hooks/useHttp'
@@ -46,7 +46,9 @@ const Users = () => {
 				))}
 			</StyledList>
 			<div>
-				<Outlet />
+				<Suspense>
+					<Outlet />
+				</Suspense>
 			</div>
 		</StyledWrapper>
 	)

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { Suspense, useRef } from 'react'
 import { useHttp } from '../hooks/useHttp'
 import { fetchUserById } from '../services/api'
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -7,7 +7,6 @@ import styled from 'styled-components'
 const SingleUser = () => {
 	const { id } = useParams()
 	const location = useLocation()
-	console.log(location)
 	const navigate = useNavigate()
 
 	const ref = useRef(location.state?.from || '/')
@@ -31,7 +30,9 @@ const SingleUser = () => {
 				<p>Password:{password}</p>
 				<Link to='todos'>Todos by user</Link>
 			</div>
-			<Outlet />
+			<Suspense>
+				<Outlet />
+			</Suspense>
 		</StyledWrapper>
 	)
 }
