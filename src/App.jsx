@@ -1,32 +1,7 @@
-import React, { lazy } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import HomePage from './pages/HomePage'
-// import Users from './pages/Users'
-import PageNotFound from './pages/PageNotFound'
-import Layout from './components/Layout'
-// import SingleUser from './pages/SingleUser'
-// import UserTodos from './pages/UserTodos'
-// 1. Створити роути, лейаут, додати заглушку - Віталій
+import React from 'react'
 
-const Users = lazy(() => import('./pages/Users'))
-const SingleUser = lazy(() => import('./pages/SingleUser'))
-const UserTodos = lazy(() => import('./pages/UserTodos'))
-
-export const App = () => {
-	return (
-		<Routes>
-			<Route path='/' element={<Layout />}>
-				<Route index element={<HomePage />} />
-
-				<Route path='users' element={<Users />}>
-					<Route index element={<h1>If you want to see info, click on user name</h1>} />
-					<Route path=':id' element={<SingleUser />}>
-						<Route path='todos' element={<UserTodos />} />
-					</Route>
-				</Route>
-
-				<Route path='*' element={<PageNotFound />} />
-			</Route>
-		</Routes>
-	)
+const App = () => {
+	return <div>App</div>
 }
+
+export default App
