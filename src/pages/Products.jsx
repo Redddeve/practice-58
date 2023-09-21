@@ -1,16 +1,19 @@
 import React from 'react'
 import { useMyContext } from '../store/context/useMyContext'
 
+import Modal from '../components/Modal'
+
 const Products = () => {
-	const { products } = useMyContext()
+	const { products, isOpen, toggle } = useMyContext()
+
 	console.log(products)
 
 	return (
 		<div>
 			<ul>
-				{products?.map(product => (
+				{products.map(product => (
 					<li key={product.id}>
-						<img src={product.thumbnail} alt={product.title} />
+						<img src={product.thumbnail} alt={product.title} onClick={() => toggle(product)} />
 						<h1>{product.title}</h1>
 						<p>Description: {product.description}</p>
 						<p>Price: {product.price}$</p>
@@ -18,6 +21,8 @@ const Products = () => {
 					</li>
 				))}
 			</ul>
+
+			{isOpen ? <Modal /> : null}
 		</div>
 	)
 }

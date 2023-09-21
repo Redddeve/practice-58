@@ -1,8 +1,8 @@
 import { useMyContext } from '../store/context/useMyContext'
-import { setProducts } from '../store/reducer/action'
 
 const HomePage = () => {
-	const { name, state, dispatch } = useMyContext()
+	const { name, state, dispatch, content } = useMyContext()
+	console.log(content)
 	return (
 		<div>
 			HomePage
