@@ -1,7 +1,15 @@
-import React from 'react'
+import { useMyContext } from '../store/context/useMyContext'
 
 const HomePage = () => {
-	return <div>HomePage</div>
+	const { name, state } = useMyContext()
+	console.log(name)
+	return (
+		<div>
+			HomePage
+			<p>{name}</p>
+			<h1>{state}</h1>
+		</div>
+	)
 }
 
 export default HomePage

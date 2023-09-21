@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage'
 import Products from './pages/Products'
 import NotFound from './pages/NotFound'
 
-// 1. Зробити роути, підключити browserRouter, Зробити заглушку - Pavlo
+// 1. Зробити роути, підключити browserRouter, Зробити заглушку - Pavlo [+]
 // 2. Створення контекста, контекст провайдера і власний хук для контекста - Dmytro Popko
 // 3. Організація редьюсера, екшенів та констант в файл actionTypes - Arsen
 // 4. Зробимо апі - Vitalii

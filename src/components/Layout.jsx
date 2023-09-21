@@ -5,12 +5,14 @@ const Layout = () => {
 	return (
 		<>
 			<nav>
-				<ul>
+				<Links>
 					<li>
 						<NavLink to='/'>Home</NavLink>
+					</li>
+					<li>
 						<NavLink to='/products'>Products</NavLink>
 					</li>
-				</ul>
+				</Links>
 			</nav>
 			<hr />
 			<OtletWrapper>
@@ -23,6 +25,11 @@ const Layout = () => {
 const OtletWrapper = styled.div`
 	min-height: 100vh;
 	padding: 10px 45px;
+`
+const Links = styled.ul`
+	display: flex;
+	gap: 20px;
+	list-style: none;
 `
 
 export default Layout
