@@ -7,7 +7,7 @@ export const MyContext = createContext()
 
 export const ContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const { products, page } = state
+	const { products, page, favorites } = state
 	const { isOpen, toggle, content, close } = useModal()
 
 	useProducts(page, dispatch)
@@ -19,6 +19,7 @@ export const ContextProvider = ({ children }) => {
 		toggle,
 		content,
 		close,
+		favorites,
 	}
 	return <MyContext.Provider value={value}>{children}</MyContext.Provider>
 }

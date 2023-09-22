@@ -4,6 +4,7 @@ export const initialState = {
 	products: [],
 	page: 1,
 	per_page: 10,
+	favorites: [],
 }
 
 export const reducer = (state, action) => {
@@ -13,14 +14,12 @@ export const reducer = (state, action) => {
 		case types.setProducts:
 			return { ...state, products: [...payload] }
 
-		// {
-		// 	products: [ {},{}],
-		// 	page: 1,
-		// 	per_page: 10,
-		//  products:[...payload]
-		// }
+		case types.addToFavorites:
+			return { ...state, favorites: [...state.favorites, action.payload] }
 
+		case types.removeFrom:
+			return { ...state, favorites: state.favorites.filter(fav => fav.id !== action.payload) }
 		default:
-			break
+			return state
 	}
 }
