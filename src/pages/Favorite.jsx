@@ -1,12 +1,16 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useMyContext } from '../store/context/useMyContext'
 import Modal from '../components/Modal'
-import { removeFav } from '../store/reducer/action'
+import { removeFav, setF } from '../store/reducer/action'
 import { useSearchParams } from 'react-router-dom'
+import axios from 'axios'
 
 export const Favorite = () => {
 	const { favorites, toggle, isOpen, dispatch } = useMyContext()
 
+	useEffect(() => {
+		axios.get('http://localhost:8080/products').then(({ data }) => dispatch(setF(data)))
+	}, [])
 	const handleRemove = item => {
 		dispatch(removeFav(item))
 	}

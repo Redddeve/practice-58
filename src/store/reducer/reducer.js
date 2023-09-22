@@ -13,6 +13,8 @@ export const reducer = (state, action) => {
 	switch (type) {
 		case types.setProducts:
 			return { ...state, products: [...payload] }
+		case 'F':
+			return { ...state, favorites: payload }
 
 		case types.addToFavorites:
 			return { ...state, favorites: [...state.favorites, action.payload] }

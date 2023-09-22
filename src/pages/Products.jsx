@@ -3,12 +3,14 @@ import { useMyContext } from '../store/context/useMyContext'
 
 import Modal from '../components/Modal'
 import { addFavorites } from '../store/reducer/action'
+import axios from 'axios'
 
 const Products = () => {
 	const { products, isOpen, toggle, dispatch } = useMyContext()
 
 	console.log(products)
 	const handleAddToFav = item => {
+		axios.post('http://localhost:8080/products', item)
 		dispatch(addFavorites(item))
 	}
 	return (
