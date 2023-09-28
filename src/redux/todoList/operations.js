@@ -1,0 +1,25 @@
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { setCurrentItem } from './slice'
+
+const todos = axios.create({
+	baseURL: '',
+})
+
+export const fetchTodosThunk = createAsyncThunk('fetchTodos', async (_, thunkApi) => {
+	const { data } = await todos.get('/todos')
+	return data
+})
+export const addTodoThunk = createAsyncThunk('addTodo', async (body, thunkApi) => {
+	await todos.post('/todos', body)
+	thunkApi.dispatch(fetchTodosThunk())
+})
+export const deleteTodoThunk = createAsyncThunk('deleteTodo', async (id, thunkApi) => {
+	await todos.delete(`/todos/${id}`)
+	thunkApi.dispatch(fetchTodosThunk())
+})
+export const toggleTodoThunk = createAsyncThunk('toggleTodo', async (body, thunkApi) => {
+	thunkApi.dispatch(setCurrentItem(body.id))
+	await todos.put(`/todos/${body.id}`, { ...body, completed: !body.completed })
+	thunkApi.dispatch(fetchTodosThunk())
+})

@@ -10,12 +10,6 @@ const Layout = () => {
 						<NavLink to='/'>Home</NavLink>
 					</li>
 					<li>
-						<NavLink to='/products'>Products</NavLink>
-					</li>
-					<li>
-						<NavLink to='/favorite'>Favorite</NavLink>
-					</li>
-					<li>
 						<NavLink to='/register'>Register</NavLink>
 					</li>
 					<li>

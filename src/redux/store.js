@@ -1,14 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { productsReducer } from './product/productsSlice'
-import { favoritesReducer } from './favorite/favoriteSlice'
-import { filterReducer } from './filter/filterSlice'
-import { userReducer } from './user/userSlice'
-
+import { todoReducer } from './todoList/slice'
+// https://goit-task-manager.herokuapp.com/
 export const store = configureStore({
 	reducer: {
-		product: productsReducer,
-		favorite: favoritesReducer,
-		filter: filterReducer,
-		user: userReducer,
+		todos: todoReducer,
 	},
+	middleware: getDefaultMiddleware => getDefaultMiddleware(),
 })
