@@ -15,7 +15,7 @@ export const fetchFavoritesThunk = createAsyncThunk('fetchFavorites', async (_, 
 
 export const addToFavoritesThunk = createAsyncThunk('addToFavoritesThunk', async (product, thunkAPI) => {
 	try {
-		const data = await axios.post('favorites', product)
+		const { data } = await axios.post('favorites', product)
 		return data
 	} catch (error) {
 		return thunkAPI.rejectWithValue(error.message)

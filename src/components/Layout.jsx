@@ -15,6 +15,9 @@ const Layout = () => {
 					<li>
 						<NavLink to='/favorite'>Favorite</NavLink>
 					</li>
+					<li>
+						<NavLink to='/login'>Login</NavLink>
+					</li>
 				</Links>
 			</nav>
 			<hr />

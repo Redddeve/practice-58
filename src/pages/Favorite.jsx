@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { selectFavError, selectFavLoading, selectFavorite } from '../redux/selectors'
+import { selectFavError, selectFavFilter, selectFavLoading, selectFavorite, selectFilter } from '../redux/selectors'
 import { useEffect } from 'react'
 import { deleteFromFavoritesThunk, fetchFavoritesThunk } from '../redux/favorite/operations'
+import { filterData } from '../redux/filter/filterSlice'
 
 export const Favorite = () => {
-	const favorites = useSelector(selectFavorite)
+	const favorites = useSelector(selectFavFilter)
+	const filter = useSelector(selectFilter)
+
 	const loading = useSelector(selectFavLoading)
 	const error = useSelector(selectFavError)
 	const dispatch = useDispatch()
@@ -19,6 +22,7 @@ export const Favorite = () => {
 
 	return (
 		<div>
+			<input value={filter} onChange={e => dispatch(filterData(e.target.value))} />
 			<ul>
 				{favorites.map(product => (
 					<li key={product.id}>
