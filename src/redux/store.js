@@ -4,6 +4,7 @@ import { userReducer } from './user/slice'
 // https://goit-task-manager.herokuapp.com/
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { archiveReducer } from './archive/slice'
 
 const persistConfig = {
 	key: 'root',
@@ -17,6 +18,7 @@ export const store = configureStore({
 	reducer: {
 		todos: todoReducer,
 		user: persistedReducer,
+		archive: archiveReducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({

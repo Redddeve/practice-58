@@ -19,6 +19,7 @@ const Layout = () => {
 					<li>
 						<NavLink to='/'>Home</NavLink>
 					</li>
+
 					{!isLogin ? (
 						<>
 							<li>
@@ -30,6 +31,9 @@ const Layout = () => {
 						</>
 					) : (
 						<>
+							<li>
+								<NavLink to='/archive'>Archive</NavLink>
+							</li>
 							<h2>{userEmail}</h2>
 							<button onClick={handleLogout}>Log Out</button>
 						</>

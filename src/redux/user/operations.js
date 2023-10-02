@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const taskApi = axios.create({
+export const taskApi = axios.create({
 	baseURL: 'https://goit-task-manager.herokuapp.com/',
 })
 
